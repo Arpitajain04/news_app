@@ -1,0 +1,55 @@
+import requests
+import os
+
+class News():
+  def __init__(self,url):
+    self.url=url
+  def main(self):
+    response = requests.get(self.url)
+    data = response.json()
+    articles = data['articles']
+    i=1
+    for article in articles:
+      print(f"Number {i}")
+      i+=1
+      title = article['title']
+      url = article['url']
+      print(f'Title: {title}\nURL: {url}\n')
+
+def us():
+  us=News('https://newsapi.org/v2/top-headlines?country=us&apiKey=ef63140671b9405c929111451dfdc38d')
+  us.main()
+
+def bitcoin():
+  bitcoin=News('https://newsapi.org/v2/everything?q=bitcoin&apiKey=ef63140671b9405c929111451dfdc38d')
+  bitcoin.main()
+
+def apple():
+  apple=News('https://newsapi.org/v2/everything?q=apple&from=2023-02-25&to=2023-02-25&sortBy=popularity&apiKey=ef63140671b9405c929111451dfdc38d')
+  apple.main()
+
+def bbc():
+  bbc=News('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=ef63140671b9405c929111451dfdc38d')
+  bbc.main()
+
+def trump():
+  trump=News('https://newsapi.org/v2/top-headlines?q=trump&apiKey=ef63140671b9405c929111451dfdc38d')
+  trump.main()
+
+while True:
+  print("---------WELCOME TO Arpita'S NEWS CHANNEL---------------")
+  print("1 : Top headlines in the US\n2 : Top headlines about Bitcoin\n3 : Top headlines about apple company\n4 : Top headlines from BBC news\n5 : Top headlines about Donald Trump")
+  
+  user=int(input('========'))
+  if user==1:
+    us()
+  elif user==2:
+    bitcoin()
+  elif user==3:
+    apple()
+  elif user==4:
+    bbc()
+  elif user==5:
+    trump()
+  else:
+    print(" enter valid options")
